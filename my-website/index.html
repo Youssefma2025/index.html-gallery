@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة العملاء - معرض الصور</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>🏢 منصة العملاء</h2>
+            </div>
+            <div class="nav-links">
+                <a href="#clients" class="nav-link">العملاء</a>
+                <a href="#gallery" class="nav-link">المعرض</a>
+                <a href="#upload" class="nav-link">رفع الصور</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- قسم إدارة العملاء -->
+    <section id="clients" class="clients-section">
+        <div class="container">
+            <h1>👥 إدارة عملاء المعرض</h1>
+            <p>أضف عملاء جدد وادخل إلى معارضهم الخاصة</p>
+            
+            <div class="clients-controls">
+                <button class="btn-primary" onclick="showAddClientForm()">
+                    ➕ إضافة عميل جديد
+                </button>
+                <div class="search-box">
+                    <input type="text" id="clientSearch" placeholder="🔍 ابحث عن عميل..." onkeyup="searchClients()">
+                </div>
+            </div>
+
+            <!-- نموذج إضافة عميل -->
+            <div class="client-form" id="clientForm" style="display: none;">
+                <h3>📋 بيانات العميل الجديد</h3>
+                <div class="form-group">
+                    <input type="text" id="clientName" placeholder="اسم العميل">
+                    <input type="email" id="clientEmail" placeholder="البريد الإلكتروني">
+                    <input type="tel" id="clientPhone" placeholder="رقم الهاتف">
+                </div>
+                <div class="form-actions">
+                    <button class="btn-success" onclick="addNewClient()">حفظ العميل</button>
+                    <button class="btn-secondary" onclick="hideClientForm()">إلغاء</button>
+                </div>
+            </div>
+
+            <!-- قائمة العملاء -->
+            <div class="clients-grid" id="clientsGrid">
+                <!-- العملاء يضافون هنا تلقائياً -->
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم معرض الصور -->
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <h2>🖼️ معرض الصور</h2>
+            <div class="gallery-info">
+                <span id="currentClientInfo">العميل: اختر عميلاً لعرض صوره</span>
+            </div>
+            
+            <div class="gallery-controls">
+                <button class="filter-btn active" onclick="filterImages('all')">كل الصور</button>
+                <button class="filter-btn" onclick="filterImages('recent')">الأحدث</button>
+                <button class="filter-btn" onclick="filterImages('favorites')">المفضلة</button>
+            </div>
+
+            <div class="images-grid" id="imagesGrid">
+                <div class="no-images">
+                    <p>👈 اختر عميلاً من القائمة لعرض صوره</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم رفع الصور -->
+    <section id="upload" class="upload-section">
+        <div class="container">
+            <h2>📤 رفع الصور للعميل</h2>
+            
+            <div class="client-selector">
+                <label>اختر العميل:</label>
+                <select id="clientSelect">
+                    <option value="">-- اختر عميل --</option>
+                </select>
+            </div>
+
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-icon">📁</div>
+                <p class="upload-text">اسحب الصور هنا أو انقر للرفع</p>
+                <p class="upload-subtext">يدعم PNG, JPG, JPEG - الحد الأقصى 10MB للصورة</p>
+                <input type="file" id="fileInput" accept="image/*" multiple hidden>
+            </div>
+
+            <div class="upload-progress" id="uploadProgress" style="display: none;">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <span id="progressText">0%</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- نافذة معاينة الصورة -->
+    <div class="modal" id="imageModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <img id="modalImage" src="" alt="معاينة الصورة">
+            <div class="image-details" id="imageDetails">
+                <!-- تفاصيل الصورة -->
+            </div>
+            <div class="modal-actions">
+                <button onclick="downloadImage()">📥 تحميل</button>
+                <button onclick="toggleFavorite()">⭐ تفضيل</button>
+                <button onclick="deleteImage()">🗑️ حذف</button>
+                <button onclick="shareImage()">📤 مشاركة</button>
+            </div>
+            <h1> email:</h1>
+ <p> youssefmaddouri2025</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
